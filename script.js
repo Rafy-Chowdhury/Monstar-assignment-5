@@ -1,33 +1,34 @@
-function catchItem(){
-   const item = document.getElementById('inPut');
-   const newEue = item.value;
+const catchItem = () =>{
+   const searchItem = document.getElementById('inPut').value;
+   const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchItem}`
 
-   fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata')
+   fetch(url)
    .then(res => res.json())
-   .then(data => displayMeal(data))
+   .then(data => displayMeal(data.meals))
+   .catch(error => console.log(error));
+   
 }
-
 const displayMeal = foods =>{
-    const foodsDiv = document.getElementById('mealItam');
+    const foodArea = document.getElementById('food-Area');
+    foodArea.innerHTML = '';
 
-  for (let i = 0; i < length; i++) {
-     const food = foods[i];
-     const foodDiv = document.createElement('div');
-       
-        const name = document.createElement('h3');
-         name.innerText = food.strMeal;
-
+    foods.forEach(food => {
+        const foodDiv = document.createElement('div');
+        foodDiv.className = 'spicyFood';
+        foodDiv.innerHTML = `
+           
+            <img src=${food.strMealThumb} />
+            <h3 class="text">${food.strMeal}</h3>
+            <button onclick="getFood('${food.strInstructions}')" >hi</button>
+            
         
-         
-        foodDiv.appendChild(name);
-    
-        foodsDiv.appendChild(foodDiv);
-
-        //console.log(foodsDiv);
-    
-  }
-
-
-
-
+        `;
+        foodArea.appendChild(foodDiv);
+    });
 }
+
+const getFood = instructions =>{
+    console.log(instructions)
+}
+
+
