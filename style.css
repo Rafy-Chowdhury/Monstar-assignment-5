@@ -36,3 +36,15 @@
     color: tomato;
 
 }
+#slideShow{
+    position: relative;
+    left: 40%;
+}
+#slideShow img{
+    width: 200px;
+    border-radius: 15px;
+}
+#slideShow h3{
+    color: tomato;
+    
+}
